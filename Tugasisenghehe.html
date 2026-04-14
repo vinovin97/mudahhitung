@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hitung Bangun & Kalkulator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background: linear-gradient(135deg, #f0f9ff, #cbebff);
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #005f99;
+    }
+    .buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+    button {
+      margin: 8px;
+      padding: 12px 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    button:nth-child(1) { background-color: #ff7f50; }
+    button:nth-child(2) { background-color: #32cd32; }
+    button:nth-child(3) { background-color: #1e90ff; }
+    button:nth-child(4) { background-color: #ff69b4; }
+    button:nth-child(5) { background-color: #8a2be2; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #005f99;
+      color: #fff;
+    }
+    td {
+      font-size: 15px;
+    }
+    #kalkulator-area, #support-area {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    #kalkulator-area h2, #support-area h2 {
+      color: #ffa500;
+      text-align: center;
+    }
+    #kalkulator-area input, select {
+      margin: 5px;
+      padding: 8px;
+      font-size: 14px;
+    }
+    #hasil-kalkulator {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .yt-link a {
+      color: #ff0000;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .yt-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>📐 Hasil Perhitungan Bangun Ruang & Kalkulator 🧮</h1>
+
+  <div class="buttons">
+    <button onclick="luaspersegipanjang()">🟧 Luas Persegi Panjang</button>
+    <button onclick="luaslingkaran()">⚪ Luas Lingkaran</button>
+    <button onclick="volumekubus()">🟦 Volume Kubus</button>
+    <button onclick="luassegitiga()">🔺 Luas Segitiga</button>
+    <button onclick="volumetabung()">🟢 Volume Tabung</button>
+  </div>
+
+  <table id="hasil">
+    <thead>
+      <tr>
+        <th>👤 Nama</th>
+        <th>📏 Bangun / Operasi</th>
+        <th>📊 Hasil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- baris hasil akan ditambahkan di sini -->
+    </tbody>
+  </table>
+
+  <!-- Area Kalkulator -->
+  <div id="kalkulator-area">
+    <h2>🧮 Kalkulator Sederhana</h2>
+    <input type="text" id="nama" placeholder="Nama kamu">
+    <input type="number" id="angka1" placeholder="Angka pertama">
+    <select id="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">×</option>
+      <option value="/">÷</option>
+    </select>
+    <input type="number" id="angka2" placeholder="Angka kedua">
+    <button style="background-color:#ffa500;" onclick="hitungKalkulator()">Hitung</button>
+    <div id="hasil-kalkulator">Belum ada perhitungan</div>
+  </div>
+
+  <!-- Area Support -->
+  <div id="support-area">
+    <h2>🎥 Support Developer</h2>
+    <p class="yt-link">
+      <a href="https://www.youtube.com/@arfadh77" target="_blank">
+        Support Developer Dengan Subscribe Youtube Channel Ini, Gratis Kok!
+      </a>
+    </p>
+  </div>
+
+  <!-- Tambahan Info Developer -->
+  <h3 style="color:#005f99; margin-top:20px;">Sedikit Info Tentang Developer</h3>
+  <p style="text-align:justify; line-height:1.6;">
+    Arvino Faiz, seorang siswa yang bersekolah di SMA AABS Purwokerto, ia memiliki hobi yang sangat menarik, 
+    salah satunya ialah Koding, hobi ini ia baru mulai kembangkan di masa SMA. Baginya, ini merupakan salah 
+    satu inspirasi terbaik yaitu belajar untuk programming/ngekoding di masa SMA ini. Sejak saat ini, ia terus 
+    gemar memunculkan semangat mempelajari ilmu programming ini lebih dalam. Semoga kedepannya akan lebih banyak 
+    karya-karya yang dihasilkan olehnya, Aamiin.
+  </p>
+</div>
+
+  <script>
+    function luaspersegipanjang() {
+      let nama = prompt("Masukan nama kamu");
+      let panjang = parseFloat(prompt("Masukkan nilai panjang:"));
+      let lebar = parseFloat(prompt("Masukkan nilai lebar:"));
+      let luas = panjang * lebar;
+      tambahBaris("👤 " + nama, "🟧 Persegi Panjang", luas + " cm²");
+    }
+
+    function luaslingkaran() {
+      let nama = prompt("Masukan nama kamu");
+      let jari = parseFloat(prompt("Masukan nilai jari-jari"));
+      let luas = Math.PI * jari * jari;
+      tambahBaris("👤 " + nama, "⚪ Lingkaran", luas.toFixed(2) + " cm²");
+    }
+
+    function volumekubus() {
+      let nama = prompt("Masuka nama kamu");
+      let sisi = parseFloat(prompt("Masukan nilai sisi"));
+      let volume = sisi * sisi * sisi;
+      tambahBaris("👤 " + nama, "🟦 Kubus", volume + " cm³");
+    }
+
+    function luassegitiga() {
+      let nama = prompt("Masukan nama kamu");
+      let alas = parseFloat(prompt("Masukan nilai alas"));
+      let tinggi = parseFloat(prompt("Masukan nilai tinggi"));
+      let luas = 0.5 * alas * tinggi;
+      tambahBaris("👤 " + nama, "🔺 Segitiga", luas + " cm²");
+    }
+
+    function volumetabung() {
+      let nama = prompt("Masukan nama kamu");
+      let jari = parseFloat(prompt("Masukan nilai jari-jari"));
+      let tinggi = parseFloat(prompt("Masukan nilai tinggi"));
+      let volume = Math.PI * jari * jari * tinggi;
+      tambahBaris("👤 " + nama, "🟢 Tabung", volume.toFixed(2) + " cm³");
+    }
+
+    function hitungKalkulator() {
+      let nama = document.getElementById("nama").value;
+      let angka1 = parseFloat(document.getElementById("angka1").value);
+      let operator = document.getElementById("operator").value;
+      let angka2 = parseFloat(document.getElementById("angka2").value);
+      let hasil;
+
+      switch(operator) {
+        case '+': hasil = angka1 + angka2; break;
+        case '-': hasil = angka1 - angka2; break;
+        case '*': hasil = angka1 * angka2; break;
+        case '/': hasil = angka1 / angka2; break;
+        default: hasil = "Operator tidak valid";
+      }
+
+      const tampil = angka1 + " " + operator + " " + angka2 + " = " + hasil;
+      document.getElementById("hasil-kalkulator").textContent = "👤 " + nama + " → " + tampil;
+      tambahBaris("👤 " + nama, "🧮 Kalkulator", tampil);
+    }
+
+    function tambahBaris(nama, bangun, hasil) {
+      let tbody = document.getElementById("hasil").getElementsByTagName("tbody")[0];
+      let row = tbody.insertRow();
+      row.insertCell(0).textContent = nama;
+      row.insertCell(1).textContent = bangun;
+      row.insertCell(2).textContent = hasil;
+    }
+  </script>
+</body>
+</html>
